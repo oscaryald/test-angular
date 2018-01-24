@@ -1,0 +1,19 @@
+<table class="table">
+	<thead>
+	    <tr (click)="chooseSort($event)">
+		      <th data-type="id">#</th>
+		      <th data-type="username">Name</th>
+		      <th data-type="email">Email</th>
+		      <th data-type="created_at">Created at</th>
+	    </tr>
+	</thead>
+	<tbody>
+		<tr *ngFor=" let user of users | userSort: setSortField ">
+			<td>{{user.id}}</td>
+			<td>{{user.username}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.created_at | date}}</td>
+		</tr>
+	</tbody>
+</table>
+<p>You can sort table by colum name </p>{{setSortField}}
