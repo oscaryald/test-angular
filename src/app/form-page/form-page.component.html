@@ -1,6 +1,7 @@
+<hr>
 <h2>Add User Form</h2>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-		<div class="form-group">
+		<div class="form-group" [ngClass]="{'has-danger': form.controls.name.invalid && form.controls.name.touched}">
 			<label for="password">Name:</label>
 			<input 
 				type="text"
@@ -12,7 +13,7 @@
 			</p>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group" [ngClass]="{'has-danger': form.controls.email.invalid && form.controls.email.touched}">
 			<label for="email">Email:</label>
 			<input 
 				type="text"

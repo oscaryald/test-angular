@@ -1,14 +1,11 @@
 import  { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 
 import { UsersService } from '../shared/users.service';
-import { UserSortPipe } from './pipe-sort/sort.pipe';
-
 
 @Component({
 	selector: 'app-users',
 	templateUrl: './users.component.html',
-	pipes: [ UserSortPipe ]
+	styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit{
 
@@ -21,31 +18,31 @@ export class UsersComponent implements OnInit{
 	
 	@ViewChild('countRows') countRows: ElementRef;
 
-	constructor(private usersService: UsersService, private route: ActivatedRoute){}
+	constructor(private usersService: UsersService){
+	}
 
 	ngOnInit(){
-		this.users = this.usersService.getUsers()
+		this.getUsers();
 		this.userLength = this.users;
 		this.setCount = this.users.length
 		this.users = this.users.slice(0, this.setCount);
 
 
-		this.id = +this.route.snapshot.params['id'];
-
-		console.log(this.route.snapshot)
-
-	    this.route.params.subscribe((params: Params) => {
-	    	console.log(params)
-	      this.id = +params['id']
-	    })
 	}
+
+	getUsers(){
+		this.usersService.getUsers()
+    	.subscribe(users => this.users = users);
+	}
+
+	
 
 	chooseSort(e){
 		this.setSortField = e.target.attributes['data-type'].value;
 	}
 
 	onChange(value){
-		this.users = this.usersService.getUsers();
+		this.getUsers();
 		let searchUsersList = this.users.filter((user) => {
 			for(let key in user){
 				if(!user.hasOwnProperty(key)) continue;
@@ -57,7 +54,7 @@ export class UsersComponent implements OnInit{
 	}
 
 	setCountRows(){
-		this.users = this.usersService.getUsers();
+		this.getUsers();
 		return this.users = this.users.slice(0, +this.countRows.nativeElement.value)
 	}
 }

@@ -6,7 +6,7 @@
 	<option *ngFor=" let user of userLength; let i = index ">{{i+1}}</option>
 </select>
 <hr>
-<p>You can sort table by colum name </p>{{setSortField}}
+<p>You can sort table by colum name </p>
 <table class="table">
 	<thead>
 	    <tr (click)="chooseSort($event)">
@@ -18,10 +18,10 @@
 	</thead>
 	<tbody>
 		<tr *ngFor=" let user of users | userSort: setSortField ">
-			<td><a >{{user.id}}</a></td>
+			<td><a [routerLink]="['/users', user.id]">{{user.id}}</a></td>
 			<td><a [routerLink]="['/users', user.id]">{{user.username}}</a></td>
-			<td><a >{{user.email}}</a></td>
-			<td><a >{{user.created_at | date}}</a></td>
+			<td><a [routerLink]="['/users', user.id]">{{user.email}}</a></td>
+			<td><a [routerLink]="['/users', user.id]">{{user.created_at | date}}</a></td>
 		</tr>
 	</tbody>
 </table>

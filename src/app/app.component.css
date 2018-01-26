@@ -1,0 +1,7 @@
+.nav-item a{
+	color: #fff;
+	padding: 10px 10px;
+}
+.nav-item a.active{
+	background: #777
+}

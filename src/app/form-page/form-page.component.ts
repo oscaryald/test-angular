@@ -19,11 +19,16 @@ export class FormPageComponent implements OnInit {
   isSubmited: boolean = false
 
   ngOnInit() {
-  	this.users = this.usersService.getUsers();
+  	this.getUsers();
   	this.form = new FormGroup({
   		name: new FormControl('', Validators.required),
   		email: new FormControl('', [Validators.required, Validators.email]),
   	})
+  }
+  
+  getUsers(){
+    this.usersService.getUsers()
+      .subscribe(users => this.users = users);
   }
 
   onSubmit(){

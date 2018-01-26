@@ -22,5 +22,17 @@ export const USERS: Users[] = [
     		email: 'armin@gmail.com',
     		created_at: defaultDate,
 		},
+		{
+			id: 4,
+    		username: 'Corsten',
+    		email: 'corsten@gmail.com',
+    		created_at: defaultDate,
+		},
+		{
+			id: 5,
+    		username: 'Fedel',
+    		email: 'fedel@gmail.com',
+    		created_at: defaultDate,
+		},
 
 ]
