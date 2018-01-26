@@ -2,7 +2,7 @@
 <app-filter-users (filterNameChange)="onChange($event)"></app-filter-users>
 <hr>
 <h3>View {{countRows.value}} rows:</h3>
-<select class="form-control" #countRows [(ngModel)]="setCount" (change)="setCountRows($event)">
+<select class="form-control" #countRows [(ngModel)]="setCount" (change)="setCountRows()">
 	<option *ngFor=" let user of userLength; let i = index ">{{i+1}}</option>
 </select>
 <hr>
