@@ -1,0 +1,14 @@
+<hr>
+<app-filter-users (filterNameChange)="onChange($event)"></app-filter-users>
+<hr>
+<ul>
+    <li  class="card" *ngFor="let post of posts" >
+            <p><strong>{{post.title}}</strong></p>
+            <p>{{post.category}}</p>
+    </li>
+</ul>
+<hr>
+<app-posts-category  *ngFor="let post of posts; let i = index"
+                     [category]="post.category"
+                     (filterCatChange)="onChangeCheckbox($event)"
+></app-posts-category>

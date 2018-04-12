@@ -12,7 +12,6 @@ export class FilterUsersComponent implements OnInit {
   ngOnInit() {
   }
 
-
   filterName: string;
   @Output() filterNameChange = new EventEmitter<string>();
 
