@@ -58,8 +58,7 @@ export class PostsComponent implements OnInit {
                 this.enabled = true;
                 return post;
             }
-        }
-
+        })
         if (searcPostList.length === 0) return;
         this.posts = searcPostList;
     }
