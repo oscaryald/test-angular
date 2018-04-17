@@ -11,6 +11,7 @@ export class PostsComponent implements OnInit{
 
 	posts = [];
 	category = [];
+	enabled = false
 
 	constructor(private postsService: PostsService){
 	}
@@ -51,12 +52,13 @@ export class PostsComponent implements OnInit{
 					}
 				}
 			})
-
+        this.enabled = false
         searcPostList = this.posts.filter((post) => {
             if(post.isActive ){
+            	this.enabled = true
                 return post
             }
-        });
+        }
 
 		if(searcPostList.length === 0) return
 		this.posts = searcPostList;
@@ -65,8 +67,7 @@ export class PostsComponent implements OnInit{
 	onChange(value){
 		this.getPosts();
 		let searchUsersList = this.posts.filter((post) => {
-
-				if(post.isActive === true){
+				if(this.enabled){
 					console.log('isAvtive')
                     return post.title.indexOf(value.toLowerCase()) !== -1 && post.isActive === true;
 
@@ -74,8 +75,6 @@ export class PostsComponent implements OnInit{
                     console.log('MOT isAvtive')
                     return post.title.indexOf(value.toLowerCase()) !== -1
 				}
-
-
 		});
 		return this.posts = searchUsersList
 	}
