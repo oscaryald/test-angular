@@ -1,24 +1,30 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PostsService} from '../../shared/posts.service';
 
 @Component({
-  selector: 'app-posts-category',
-  templateUrl: './posts-category.component.html',
-  styleUrls: ['./posts-category.component.css']
+    selector: 'app-posts-category',
+    templateUrl: './posts-category.component.html',
+    styleUrls: ['./posts-category.component.css']
 })
 export class PostsCategoryComponent implements OnInit {
 
-  @Input() category;
-  categoryName
+    @Input() category;
+    categoryName;
 
     @Output() filterCatChange = new EventEmitter<string>();
 
-  constructor() { }
+    constructor(private postsService: PostsService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-    filterChange(value){
-        this.filterCatChange.emit(value)
+    filterChange(value) {
+        let objInput = {
+            categoryName: this.categoryName,
+            text: this.category,
+        };
+        this.filterCatChange.emit(objInput);
     }
 
 }

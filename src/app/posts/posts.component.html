@@ -8,7 +8,7 @@
     </li>
 </ul>
 <hr>
-<app-posts-category  *ngFor="let post of posts; let i = index"
-                     [category]="post.category"
+<app-posts-category  *ngFor="let cat of category; let i = index"
+                     [category]="cat.category"
                      (filterCatChange)="onChangeCheckbox($event)"
 ></app-posts-category>

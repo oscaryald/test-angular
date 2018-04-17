@@ -1,6 +1,6 @@
-<label >
+<label for="{{category}}">
   {{category}}
-<input [(ngModel)]="categoryName" type="checkbox" (ngModelChange)="filterChange(category)">
+<input id="{{category}}" [(ngModel)]="categoryName" type="checkbox" (ngModelChange)="filterChange(event)">
 </label>
 
 

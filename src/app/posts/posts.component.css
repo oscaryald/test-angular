@@ -1,9 +1,4 @@
-.table th{
-	cursor: pointer;
-	background: #eee;
-	transition:all .3s;
-}
-.table th:hover{
-	cursor: pointer;
-	background: #777;
+.card{
+	padding:10px;
+	margin: 10px auto;
 }

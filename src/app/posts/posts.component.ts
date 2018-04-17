@@ -10,38 +10,56 @@ import { PostsService } from '../shared/posts.service';
 export class PostsComponent implements OnInit{
 
 	posts = [];
-
-	
-	@ViewChild('countRows') countRows: ElementRef;
+	category = [];
 
 	constructor(private postsService: PostsService){
 	}
 
 	ngOnInit(){
         this.getPosts();
-
 	}
 
     getPosts(){
 		this.postsService.getPosts()
     	.subscribe(posts => {
-            this.posts =  posts
+            this.posts =  posts;
+            this.category = this.getCategories(posts)
         });
 	}
 
+	getCategories(posts){
+		let obj = {}
+		let arr = posts.filter((post) => {
+			if(obj[post.category]) return obj[post.category]
+			obj[post.category] = true;
+		})
+		return arr
+	}
 
     onChangeCheckbox(value){
 
         this.getPosts();
 
-        let searcPostList = this.posts;
+        let searcPostList = [];
+
+            this.posts.forEach((post) => {
+                if( post.category === value.text.toLowerCase() ){
+					if(value.categoryName === true){
+							post.isActive = true;
+					}else{
+							post.isActive = false;
+					}
+				}
+			})
 
         searcPostList = this.posts.filter((post) => {
-            return post.category.indexOf(value.toLowerCase()) !== -1
+            if(post.isActive ){
+                return post
+            }
         });
 
-        this.posts = searcPostList
-
+		if(searcPostList.length === 0) return
+		this.posts = searcPostList;
 	}
 
 	onChange(value){
