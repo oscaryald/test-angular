@@ -18,6 +18,7 @@ export class PostsComponent implements OnInit {
 
     ngOnInit() {
         this.getPosts();
+        console.log('test')
     }
 
     getPosts() {
