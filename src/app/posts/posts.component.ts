@@ -65,11 +65,17 @@ export class PostsComponent implements OnInit{
 	onChange(value){
 		this.getPosts();
 		let searchUsersList = this.posts.filter((post) => {
-			for(let key in post){
-				if(!post.hasOwnProperty(key)) continue;
-				let param = post[key].toString().toLowerCase();
-				if(param.indexOf(value.toLowerCase()) !== -1) return true;
-			}	
+
+				if(post.isActive === true){
+					console.log('isAvtive')
+                    return post.title.indexOf(value.toLowerCase()) !== -1 && post.isActive === true;
+
+				}else{
+                    console.log('MOT isAvtive')
+                    return post.title.indexOf(value.toLowerCase()) !== -1
+				}
+
+
 		});
 		return this.posts = searchUsersList
 	}

@@ -13,13 +13,13 @@ export class PostsCategoryComponent implements OnInit {
 
     @Output() filterCatChange = new EventEmitter<string>();
 
-    constructor(private postsService: PostsService) {
+    constructor() {
     }
 
     ngOnInit() {
     }
 
-    filterChange(value) {
+    filterChange() {
         let objInput = {
             categoryName: this.categoryName,
             text: this.category,
